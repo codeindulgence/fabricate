@@ -1,17 +1,13 @@
-require 'minitest/autorun'
+require_relative 'spec_helper'
 
-require_relative '../lib/fake'
-
-describe Fake do
-
-  before do
-    @fake = Fake.new
-  end
+describe Fake::Value do
 
   describe 'generating fake values' do
 
     it 'gives a name' do
-      @fake.value('Name').must_be_instance_of String
+      reliably do
+        Fake::Value.get('Name').to_s.must_equal 'Mina Abbott'
+      end
     end
 
   end
