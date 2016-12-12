@@ -1,11 +1,10 @@
-require 'faker'
-
 module Fake
 
   class Value
 
     def initialize(type)
-      @value = Faker::Name.name
+      proxy = Proxy.new type
+      @value = proxy.get
     end
 
     def to_s
@@ -15,7 +14,7 @@ module Fake
     class << self
 
       def get(type)
-        new type
+        %(#{new type})
       end
 
     end
