@@ -4,9 +4,9 @@ module Fake
 
     class << self
 
-      def get(*types)
-        types.map do |type|
-          Value.get type
+      def get(*columns)
+        columns.map do |column|
+          Value.get column
         end
       end
 
