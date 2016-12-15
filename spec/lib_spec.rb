@@ -1,5 +1,3 @@
-require_relative 'spec_helper'
-
 describe Fake do
 
   let(:columns) {%w(Name Email Country)}

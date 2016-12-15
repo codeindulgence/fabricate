@@ -1,8 +1,4 @@
-require 'minitest/autorun'
-
-require_relative '../lib/fake'
-
-I18n.load_path = [File.expand_path('test/lib/locales/en.yml')]
+I18n.load_path = [File.expand_path('spec/lib/locales/en.yml')]
 
 def fake(id)
   fakes = {
