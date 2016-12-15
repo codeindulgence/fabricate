@@ -53,10 +53,7 @@ describe Fake do
     describe 'returning a row' do
 
       it 'gives an array of Fake::Values' do
-        name, email, country = subject.get(*columns)
-        name.must_equal fake(:name)
-        email.must_match fake(:email)
-        country.must_equal fake(:country)
+        is_fake_row? subject.get(*columns)
       end
 
     end
@@ -70,12 +67,18 @@ describe Fake do
     describe 'generating rows' do
 
       it 'generates a bunch of rows' do
-        rows = subject.new(*columns).generate(10)
-        rows.length.must_equal 10
-        name, email, country = rows.first
-        name.must_equal fake(:name)
-        email.must_match fake(:email)
-        country.must_equal fake(:country)
+        count = 10
+        rows = subject.new(*columns).generate(count)
+        rows.length.must_equal count
+        is_fake_row? rows.first
+      end
+
+      it 'yields to a block' do
+        row = nil
+        subject.new(*columns).generate(1) { |r| row = r }
+
+        row.length.must_equal columns.length
+        is_fake_row? row
       end
 
     end

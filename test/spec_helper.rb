@@ -14,3 +14,10 @@ def fake(id)
 
   fakes[id]
 end
+
+def is_fake_row?(row)
+  name, email, country = row
+  name.must_equal fake(:name)
+  email.must_match fake(:email)
+  country.must_equal fake(:country)
+end

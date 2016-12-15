@@ -7,7 +7,12 @@ module Fake
     end
 
     def generate(count)
-      Array.new(count) { Row.get(*@columns) }
+      if block_given?
+        count.times { yield Row.get(*@columns) }
+        return
+      else
+        Array.new(count) { Row.get(*@columns) }
+      end
     end
 
   end
