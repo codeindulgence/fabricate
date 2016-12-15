@@ -6,9 +6,14 @@ module Fake
       @columns = columns
     end
 
-    def generate(count)
+    def generate(count = nil)
       if block_given?
-        count.times { yield Row.get(*@columns) }
+        block = proc { yield Row.get(*@columns) }
+        if count.nil?
+          loop(&block)
+        else
+          count.times(&block)
+        end
         return
       else
         Array.new(count) { Row.get(*@columns) }
