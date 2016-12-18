@@ -1,5 +1,8 @@
+$LOAD_PATH.unshift File.expand_path(__dir__)
+
 require 'faker'
-require_relative 'fake/proxy'
-require_relative 'fake/value'
-require_relative 'fake/row'
-require_relative 'fake/generator'
+require 'fake/proxy'
+require 'fake/value'
+require 'fake/row'
+require 'fake/generator'
+require 'fake/cli'
