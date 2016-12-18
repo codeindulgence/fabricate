@@ -17,7 +17,7 @@ module Fake
       def execute!(args)
         argh = parse args
         Generator.new(*argh[:columns]).generate argh[:count] do |row|
-          print(*row, $/)
+          puts row.join ','
         end
       end
 

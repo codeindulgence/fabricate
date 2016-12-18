@@ -5,4 +5,4 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 require 'fake'
 
-puts Fake::CLI.execute! ARGV
+Fake::CLI.execute! ARGV

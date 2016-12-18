@@ -118,7 +118,7 @@ describe Fake do
           system "bin/fake #{args.join ' '}"
         end
 
-        out.chomp.lines.length.must_equal 10
+        out.lines.length.must_equal 10
       end
 
     end
