@@ -1,4 +1,4 @@
-module Fake
+module Fabricate
 
   class Value
 

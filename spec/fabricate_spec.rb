@@ -1,18 +1,18 @@
 require 'minitest/autorun'
 
-require_relative '../lib/fake'
+require_relative '../lib/fabricate'
 require_relative 'spec_helper'
 
-describe Fake do
+describe Fabricate do
 
   let(:columns) {%w(Name Email Country)}
 
-  describe Fake::Proxy do
+  describe Fabricate::Proxy do
 
-    subject { Fake::Proxy }
+    subject { Fabricate::Proxy }
 
     it 'loads aliases from yaml' do
-      subject::ALIASES.must_equal YAML.load_file('./lib/fake/aliases.yaml')
+      subject::ALIASES.must_equal YAML.load_file('./lib/fabricate/aliases.yaml')
     end
 
     it 'resolves class aliases' do
@@ -32,9 +32,9 @@ describe Fake do
 
   end
 
-  describe Fake::Value do
+  describe Fabricate::Value do
 
-    subject { Fake::Value }
+    subject { Fabricate::Value }
 
     describe 'returning fake values' do
 
@@ -49,13 +49,13 @@ describe Fake do
 
   end
 
-  describe Fake::Row do
+  describe Fabricate::Row do
 
-    subject { Fake::Row }
+    subject { Fabricate::Row }
 
     describe 'returning a row' do
 
-      it 'gives an array of Fake::Values' do
+      it 'gives an array of Fabricate::Values' do
         is_fake_row? subject.get(*columns)
       end
 
@@ -63,9 +63,9 @@ describe Fake do
 
   end
 
-  describe Fake::Generator do
+  describe Fabricate::Generator do
 
-    subject { Fake::Generator }
+    subject { Fabricate::Generator }
 
     describe 'generating rows' do
 
@@ -88,9 +88,9 @@ describe Fake do
 
   end
 
-  describe Fake::CLI do
+  describe Fabricate::CLI do
 
-    subject { Fake::CLI }
+    subject { Fabricate::CLI }
     let(:args) { %w(10 Name,Email,Country) }
 
     it 'parses command line arguments' do
@@ -111,12 +111,14 @@ describe Fake do
       out.lines.length.must_equal 10
     end
 
-    describe 'bin/fake' do
+    describe 'bin/fabricate' do
 
       it 'prints the data' do
-        out, _ = capture_subprocess_io do
-          system "bin/fake #{args.join ' '}"
+        out, err = capture_subprocess_io do
+          system "bin/fabricate #{args.join ' '}"
         end
+
+        puts err
 
         out.lines.length.must_equal 10
       end

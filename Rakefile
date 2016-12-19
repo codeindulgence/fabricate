@@ -1,5 +1,5 @@
 task default: [:test]
 
 task :test do
-  ruby 'spec/fake_spec.rb'
+  ruby 'spec/fabricate_spec.rb'
 end

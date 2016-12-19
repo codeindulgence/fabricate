@@ -1,12 +1,12 @@
 require 'yaml'
 
-module Fake
+module Fabricate
 
   class Proxy
 
     attr_reader :class, :method
 
-    ALIASES = YAML.load_file './lib/fake/aliases.yaml'
+    ALIASES = YAML.load_file './lib/fabricate/aliases.yaml'
 
     def initialize(type)
       klass, method = (ALIASES[type] || type).split '.'

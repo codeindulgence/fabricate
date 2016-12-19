@@ -1,6 +1,6 @@
 require 'optparse'
 
-module Fake
+module Fabricate
 
   class CLI
 

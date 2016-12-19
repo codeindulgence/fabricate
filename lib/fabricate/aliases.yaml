@@ -1,0 +1,30 @@
+---
+Email: Internet.email
+
+City: Address.city
+Country: Address.country
+CountryCode: Address.country_code
+Latitude: Address.latitude
+Longitude: Address.longitude
+Postcode: Address.postcode
+Postcode: Address.zip
+State: Address.state
+Street: Address.street_address
+TZ: Address.time_zone
+Zip: Address.zip
+
+Price: Commerce.price
+
+Company: Company.name
+Profession: Company.profession
+ABN: Company.australian_business_number
+
+IP: Internet.ip_v4_address
+
+Paragraph: Lorem.paragraph
+Message: Lorem.paragraph
+Description: Lorem.paragraph
+
+Number: Number.number
+
+Boolean: Boolean.boolean
