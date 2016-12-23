@@ -114,11 +114,9 @@ describe Fabricate do
     describe 'bin/fabricate' do
 
       it 'prints the data' do
-        out, err = capture_subprocess_io do
+        out, _ = capture_subprocess_io do
           system "bin/fabricate #{args.join ' '}"
         end
-
-        puts err
 
         out.lines.length.must_equal 10
       end
