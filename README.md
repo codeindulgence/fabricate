@@ -18,23 +18,30 @@ Usage
 -----
 
 ```
-$ fabricate 1 Name,Email,Country,Color.color_name`
+$ fabricate 3 Name,Email,Country,Color.color_name`
 
-Horace Windler,emanuel_funk@kiehn.com,New Caledonia,green
+Summer Auer,maria.oreilly@oconnell.info,Guyana,black
+Dr. Shyanne Shields,jose_herman@kshlerinmacgyver.info,Iraq,lime
+Trent Olson III,candice_okuneva@brakushaag.name,Kyrgyz Republic,pink
 ```
 
 Refer to [Faker docs](https://github.com/stympy/faker/blob/master/README.md#usage) for class and method names.
 
 Roadmap to 1.0
 --------------
+- [ ] Print valid CSV output
+- [ ] Configurable seperators
 
-- [ ] Configure custom lang file
+Future Features
+---------------
+
 - [ ] Pass options to relevant methods
+- [ ] Configure custom lang file
 - [ ] Load schema from config file
-- [ ] Run on HTTP
-- [ ] Run on FTP
-- [ ] JSON output
-- [ ] XML output
+- [ ] HTTP Interface
+- [ ] Write to TCP
+- [ ] Different outputs: JSON, XML
+- [ ] Mathematical formulae for numerical values
 
 Contributing
 ------------
