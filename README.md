@@ -3,7 +3,7 @@ Fabricate
 
 Description
 -----------
-Interface to the awesome [Faker](https://github.com/stympy/faker).
+CLI interface to the awesome [Faker](https://github.com/stympy/faker).
 
 Installation
 ------------
@@ -26,22 +26,6 @@ Trent Olson III,candice_okuneva@brakushaag.name,Kyrgyz Republic,pink
 ```
 
 Refer to [Faker docs](https://github.com/stympy/faker/blob/master/README.md#usage) for class and method names.
-
-Roadmap to 1.0
---------------
-- [x] Print valid CSV output
-- [ ] Configurable seperators
-
-Future Features
----------------
-
-- [ ] Pass options to relevant methods
-- [ ] Configure custom lang file
-- [ ] Load schema from config file
-- [ ] HTTP Interface
-- [ ] Write to TCP
-- [ ] Different outputs: JSON, XML
-- [ ] Mathematical formulae for numerical values
 
 Contributing
 ------------
