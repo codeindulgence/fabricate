@@ -1,3 +1,4 @@
+require 'pry'
 I18n.load_path = [File.expand_path('spec/lib/locales/en.yml')]
 
 def fake(id)

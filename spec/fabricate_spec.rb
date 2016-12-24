@@ -94,15 +94,12 @@ describe Fabricate do
     let(:args) { %w(10 Name,Email,Country) }
 
     it 'parses command line arguments' do
-      subject.parse(args).must_equal \
-        count: 10,
-        columns: [
-          'Name',
-          'Email',
-          'Country'
-        ]
+      options = subject.parse args
+      options.count.must_equal 10
+      options.columns.must_equal %w[Name Email Country]
     end
 
+    # $ fabricate 10 Name,Email,Country
     it 'prints the data' do
       out, _ = capture_io do
         subject.execute! args
@@ -111,12 +108,30 @@ describe Fabricate do
       out.lines.length.must_equal 10
     end
 
+    # $ fabricate 10 Name.name_with_quote,Name.name_with_newline
     it 'prints properly formatted CSV' do
       out, _ = capture_io do
         subject.execute! %w(1 Name.name_with_quote,Name.name_with_newline)
       end
 
       out.must_equal "\"First\"\"Last\",\"First\nLast\"\n"
+    end
+
+    describe 'column separator' do
+
+      # $ fabricate 10 Name,Email,Country --col-sep="|"
+      it 'can parse the column separator option' do
+        subject.parse(%w(--col-sep |)).col_sep.must_equal '|'
+      end
+
+      it 'can specify CSV separators' do
+        out, _ = capture_io do
+          subject.execute! args + ['--col-sep="|"']
+        end
+
+        out.lines.first.split('|').length.must_equal 3, out.lines.first
+      end
+
     end
 
     describe 'bin/fabricate' do
