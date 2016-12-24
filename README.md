@@ -29,7 +29,7 @@ Refer to [Faker docs](https://github.com/stympy/faker/blob/master/README.md#usag
 
 Roadmap to 1.0
 --------------
-- [ ] Print valid CSV output
+- [x] Print valid CSV output
 - [ ] Configurable seperators
 
 Future Features

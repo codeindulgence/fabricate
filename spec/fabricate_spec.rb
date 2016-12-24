@@ -111,6 +111,14 @@ describe Fabricate do
       out.lines.length.must_equal 10
     end
 
+    it 'prints properly formatted CSV' do
+      out, _ = capture_io do
+        subject.execute! %w(1 Name.name_with_quote,Name.name_with_newline)
+      end
+
+      out.must_equal "\"First\"\"Last\",\"First\nLast\"\n"
+    end
+
     describe 'bin/fabricate' do
 
       it 'prints the data' do

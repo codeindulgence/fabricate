@@ -1,4 +1,4 @@
-require 'optparse'
+require 'csv'
 
 module Fabricate
 
@@ -17,7 +17,7 @@ module Fabricate
       def execute!(args)
         argh = parse args
         Generator.new(*argh[:columns]).generate argh[:count] do |row|
-          puts row.join ','
+          puts row.to_csv
         end
       end
 
