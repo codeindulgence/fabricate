@@ -13,11 +13,15 @@ module Fabricate
       klass, method = (ALIASES[type] || type).split '.'
       @method = method.nil? ? klass.downcase : method
 
-      @class = Faker.const_get klass rescue raise TypeError, "Invalid type: #{type}"
+      @class = Faker.const_get klass rescue type_error
     end
 
     def get
-      @class.send @method rescue raise TypeError, "Invalid type: #{@type}"
+      @class.send @method rescue type_error
+    end
+
+    def type_error
+      raise TypeError, @type
     end
   end
 end
