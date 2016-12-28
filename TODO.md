@@ -4,9 +4,9 @@ Fabricate To Do List
 1.0 Release
 ------------
 
+- Error handling
 - Configurable separators
 - Enable header row
-- Help and usage output
 - Command to list supported types
 
 Future Versions

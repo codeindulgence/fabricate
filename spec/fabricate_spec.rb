@@ -93,6 +93,24 @@ describe Fabricate do
     subject { Fabricate::CLI }
     let(:args) { %w(--count 10 --columns Name,Email,Country) }
 
+    describe 'help and usage' do
+      it 'responds to --help' do
+        out, _ = capture_io do
+          subject.execute! %w(--help)
+        end
+
+        out.must_match(/Usage/)
+      end
+
+      it 'responds to no args being passed' do
+        out, _ = capture_io do
+          subject.execute! []
+        end
+
+        out.must_match(/Usage/)
+      end
+    end
+
     it 'parses command line arguments' do
       options = subject.parse args
       options.count.must_equal 10
