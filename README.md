@@ -12,17 +12,24 @@ Installation
 Synopsis
 --------
 
-`$ fabricate COUNT TYPE[,TYPE,...]`
+```
+Usage: fabricate [options]
+    -d, --delimiter STRING           Specify the column separator (default ',').
+    -c TYPE1[,TYPE2[,...]],          Specify the desired column names
+        --columns                    Find type names at: https://github.com/stympy/faker/blob/master/README.md#usage
+    -n, --count INTEGER              Set the number of desired rows
+    -h, --help                       Prints this help
+```
 
-Usage
+Example
 -----
 
 ```
-$ fabricate 3 Name,Email,Country,Color.color_name`
+$ fabricate --count 3 --columns Name,Email,Country,Color.color_name --delimiter \|
 
-Summer Auer,maria.oreilly@oconnell.info,Guyana,black
-Dr. Shyanne Shields,jose_herman@kshlerinmacgyver.info,Iraq,lime
-Trent Olson III,candice_okuneva@brakushaag.name,Kyrgyz Republic,pink
+Summer Auer|maria.oreilly@oconnell.info|Guyana|black
+Dr. Shyanne Shields|jose_herman@kshlerinmacgyver.info|Iraq|lime
+Trent Olson III|candice_okuneva@brakushaag.name|Kyrgyz Republic|pink
 ```
 
 Refer to [Faker docs](https://github.com/stympy/faker/blob/master/README.md#usage) for class and method names.

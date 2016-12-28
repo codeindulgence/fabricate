@@ -4,7 +4,8 @@ Fabricate Change Log
 Unreleased
 ----------
 ### Added
-- Added help option and usage instructions
+- Help option and usage instructions
+- Error handling and nice CLI error messages
 
 0.1.2 - 2016-24-12
 ------------------
