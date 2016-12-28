@@ -26,9 +26,9 @@ module Fabricate
             options.delimiter = v
           end
 
-          opts.on '-c', '--columns COL1[,COL2[,...]]', Array,
+          opts.on '-c', '--columns TYPE1[,TYPE2[,...]]', Array,
             'Specify the desired column names',
-            'Find class and method names at: https://github.com/stympy/faker/blob/master/README.md#usage' do |v|
+            'Find type names at: https://github.com/stympy/faker/blob/master/README.md#usage' do |v|
 
             options.columns = v
           end

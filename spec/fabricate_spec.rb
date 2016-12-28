@@ -30,6 +30,20 @@ describe Fabricate do
       subject.new('Email').get.must_match fake(:email)
     end
 
+    describe 'invalid types' do
+
+      it 'raises a TypeError' do
+        proc {
+          subject.new('Kountry')
+        }.must_raise Fabricate::TypeError
+
+        proc {
+          subject.new('Name.failure').get
+        }.must_raise Fabricate::TypeError
+      end
+
+    end
+
   end
 
   describe Fabricate::Value do
