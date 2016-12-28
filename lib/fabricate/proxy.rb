@@ -13,11 +13,15 @@ module Fabricate
       klass, method = (ALIASES[type] || type).split '.'
       @method = method.nil? ? klass.downcase : method
 
-      @class = Faker.const_get klass rescue type_error
+      @class = Faker.const_get klass
+    rescue NameError
+      type_error
     end
 
     def get
-      @class.send @method rescue type_error
+      @class.send @method
+    rescue NoMethodError
+      type_error
     end
 
     def type_error
