@@ -91,7 +91,7 @@ describe Fabricate do
   describe Fabricate::CLI do
 
     subject { Fabricate::CLI }
-    let(:args) { %w(10 Name,Email,Country) }
+    let(:args) { %w(--count 10 --columns Name,Email,Country) }
 
     it 'parses command line arguments' do
       options = subject.parse args
@@ -111,7 +111,7 @@ describe Fabricate do
     # $ fabricate 10 Name.name_with_quote,Name.name_with_newline
     it 'prints properly formatted CSV' do
       out, _ = capture_io do
-        subject.execute! %w(1 Name.name_with_quote,Name.name_with_newline)
+        subject.execute! %w(-n 1 -c Name.name_with_quote,Name.name_with_newline)
       end
 
       out.must_equal "\"First\"\"Last\",\"First\nLast\"\n"
@@ -119,14 +119,14 @@ describe Fabricate do
 
     describe 'column separator' do
 
-      # $ fabricate 10 Name,Email,Country --col-sep="|"
-      it 'can parse the column separator option' do
-        subject.parse(%w(--col-sep |)).col_sep.must_equal '|'
+      # $ fabricate 10 Name,Email,Country --delimiter="|"
+      it 'can parse the delimiter option' do
+        subject.parse(%w(--delimiter |)).delimiter.must_equal '|'
       end
 
       it 'can specify CSV separators' do
         out, _ = capture_io do
-          subject.execute! args + ['--col-sep="|"']
+          subject.execute! args + ['--delimiter="|"']
         end
 
         out.lines.first.split('|').length.must_equal 3, out.lines.first
