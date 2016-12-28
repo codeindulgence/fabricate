@@ -110,7 +110,7 @@ describe Fabricate do
     describe 'help and usage' do
       it 'responds to --help' do
         out, _ = capture_io do
-          subject.execute! %w(--help)
+          subject.new(%w(--help)).execute!
         end
 
         out.must_match(/Usage/)
@@ -118,7 +118,7 @@ describe Fabricate do
 
       it 'responds to no args being passed' do
         out, _ = capture_io do
-          subject.execute! []
+          subject.new([]).execute!
         end
 
         out.must_match(/Usage/)
@@ -126,7 +126,7 @@ describe Fabricate do
     end
 
     it 'parses command line arguments' do
-      options = subject.parse args
+      options = subject.new(args).options
       options.count.must_equal 10
       options.columns.must_equal %w[Name Email Country]
     end
@@ -134,7 +134,7 @@ describe Fabricate do
     # $ fabricate 10 Name,Email,Country
     it 'prints the data' do
       out, _ = capture_io do
-        subject.execute! args
+        subject.new(args).execute!
       end
 
       out.lines.length.must_equal 10
@@ -143,7 +143,7 @@ describe Fabricate do
     # $ fabricate 10 Name.name_with_quote,Name.name_with_newline
     it 'prints properly formatted CSV' do
       out, _ = capture_io do
-        subject.execute! %w(-n 1 -c Name.name_with_quote,Name.name_with_newline)
+        subject.new(%w(-n 1 -c Name.name_with_quote,Name.name_with_newline)).execute!
       end
 
       out.must_equal "\"First\"\"Last\",\"First\nLast\"\n"
@@ -153,12 +153,12 @@ describe Fabricate do
 
       # $ fabricate 10 Name,Email,Country --delimiter="|"
       it 'can parse the delimiter option' do
-        subject.parse(%w(--delimiter |)).delimiter.must_equal '|'
+        subject.new(%w(--delimiter |)).options.delimiter.must_equal '|'
       end
 
       it 'can specify CSV separators' do
         out, _ = capture_io do
-          subject.execute! args + ['--delimiter="|"']
+          subject.new(args + ['--delimiter="|"']).execute!
         end
 
         out.lines.first.split('|').length.must_equal 3, out.lines.first

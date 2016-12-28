@@ -1,6 +1,6 @@
 module Fabricate
 
-  class TypeError < StandardError
+  class TypeError < FabricateError
 
     def initialize(type)
       super "Invalid type: #{type}"

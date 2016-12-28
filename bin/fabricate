@@ -5,4 +5,4 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 require 'fabricate'
 
-Fabricate::CLI.execute! ARGV
+Fabricate::CLI.new(ARGV).execute!
