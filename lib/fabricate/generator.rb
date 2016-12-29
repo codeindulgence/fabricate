@@ -7,17 +7,8 @@ module Fabricate
     end
 
     def generate(count = nil)
-      if block_given?
-        block = proc { yield Row.get(*@columns) }
-        if count.nil?
-          loop(&block)
-        else
-          count.times(&block)
-        end
-        return
-      else
-        Array.new(count) { Row.get(*@columns) }
-      end
+      enumerator = count.nil? ? loop : count.times
+      enumerator.each { yield Row.get(*@columns) }
     end
 
   end

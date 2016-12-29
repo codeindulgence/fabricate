@@ -83,13 +83,6 @@ describe Fabricate do
 
     describe 'generating rows' do
 
-      it 'generates a bunch of rows' do
-        count = 10
-        rows = subject.new(*columns).generate(count)
-        rows.length.must_equal count
-        is_fake_row? rows.first
-      end
-
       it 'yields to a block' do
         row = nil
         subject.new(*columns).generate(1) { |r| row = r }
