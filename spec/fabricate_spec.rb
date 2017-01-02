@@ -95,6 +95,28 @@ describe Fabricate do
 
   end
 
+  describe Fabricate::Render do
+
+    describe Fabricate::Render::CSV do
+
+      let(:generator) { Fabricate::Generator.new(*columns) }
+      subject { Fabricate::Render::CSV.new generator  }
+
+      it 'generates a bunch of rows' do
+        count = 10
+        rows = subject.render(count)
+        rows.length.must_equal count
+        is_fake_row? rows.first
+      end
+
+      it 'renders valid CSV' do
+        is_fake_row? subject.render(1).first
+      end
+
+    end
+
+  end
+
   describe Fabricate::CLI do
 
     subject { Fabricate::CLI }
