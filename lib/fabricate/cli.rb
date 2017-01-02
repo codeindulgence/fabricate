@@ -19,10 +19,10 @@ module Fabricate
         opts.separator ''
         opts.separator 'Usage: fabricate [options]'
 
-        opts.on '-d', '--delimiter STRING',
-          %(Specify the column separator (default ',').) do |v|
+        opts.on '-n', '--count INTEGER', Integer,
+          'Set the number of desired rows' do |v|
 
-          @options[:delimiter] = v
+          @options[:count] = v
         end
 
         opts.on '-c', '--columns TYPE1[,TYPE2[,...]]', Array,
@@ -32,10 +32,16 @@ module Fabricate
           @options[:columns] = v
         end
 
-        opts.on '-n', '--count INTEGER', Integer,
-          'Set the number of desired rows' do |v|
+        opts.on '-d', '--delimiter STRING',
+          %(Specify the column separator (default ',').) do |v|
 
-          @options[:count] = v
+          @options[:delimiter] = v
+        end
+
+        opts.on '-H', '--header', FalseClass,
+          'Print the column types as a header row' do |v|
+
+          @options[:header] = true
         end
 
         opts.on("-h", "--help", "Prints this help") do

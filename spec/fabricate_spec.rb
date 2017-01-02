@@ -213,6 +213,17 @@ describe Fabricate do
 
     end
 
+    describe 'header row' do
+      it 'prints a header row' do
+        out, _ = capture_io do
+          subject.new(args + ['--header']).execute!
+        end
+
+        out.lines.length.must_equal 11
+        out.lines.first.chomp.must_equal columns.join(',')
+      end
+    end
+
     describe 'bin/fabricate' do
 
       it 'prints the data' do
