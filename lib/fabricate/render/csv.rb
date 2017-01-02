@@ -1,3 +1,5 @@
+require 'csv'
+
 module Fabricate
 
   module Render
@@ -8,12 +10,18 @@ module Fabricate
         @generator = generator
       end
 
-      def render(count)
-        rows = []
-        @generator.generate(count) do |row|
-          rows << row
+      def render(options)
+        @generator.generate(options[:count]) do |row|
+          puts row.to_csv(csv_options_from options)
         end
-        rows
+      end
+
+      private
+
+      def csv_options_from(options)
+        {
+          col_sep: (options[:delimiter] or ',')
+        }
       end
 
     end

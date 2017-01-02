@@ -102,15 +102,42 @@ describe Fabricate do
       let(:generator) { Fabricate::Generator.new(*columns) }
       subject { Fabricate::Render::CSV.new generator  }
 
-      it 'generates a bunch of rows' do
-        count = 10
-        rows = subject.render(count)
-        rows.length.must_equal count
-        is_fake_row? rows.first
+      describe 'basic' do
+
+        it 'renders a bunch of rows' do
+          count = 10
+          out, _ = capture_io do
+            subject.render(count: count)
+          end
+          out.lines.length.must_equal count
+        end
+
       end
 
-      it 'renders valid CSV' do
-        is_fake_row? subject.render(1).first
+      describe 'complex' do
+
+        let(:columns) { %w(Name.name_with_quote Name.name_with_newline) }
+
+        it 'prints properly formatted CSV' do
+          out, _ = capture_io do
+            subject.render count: 1
+          end
+
+          out.must_equal "\"First\"\"Last\",\"First\nLast\"\n"
+        end
+
+      end
+
+      describe 'column separator' do
+
+        it 'can specify CSV separators' do
+          out, _ = capture_io do
+            subject.render(count: 1, delimiter: '|')
+          end
+
+          out.lines.first.split('|').length.must_equal 3, out.lines.first
+        end
+
       end
 
     end
@@ -142,8 +169,8 @@ describe Fabricate do
 
     it 'parses command line arguments' do
       options = subject.new(args).options
-      options.count.must_equal 10
-      options.columns.must_equal %w[Name Email Country]
+      options[:count].must_equal 10
+      options[:columns].must_equal %w[Name Email Country]
     end
 
     # $ fabricate 10 Name,Email,Country
@@ -168,7 +195,7 @@ describe Fabricate do
 
       # $ fabricate 10 Name,Email,Country --delimiter="|"
       it 'can parse the delimiter option' do
-        subject.new(%w(--delimiter |)).options.delimiter.must_equal '|'
+        subject.new(%w(--delimiter |)).options[:delimiter].must_equal '|'
       end
 
       it 'can specify CSV separators' do
