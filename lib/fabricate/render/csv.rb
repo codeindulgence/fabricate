@@ -11,6 +11,7 @@ module Fabricate
       end
 
       def render(options)
+        puts @generator.columns.to_csv if options[:header]
         @generator.generate(options[:count]) do |row|
           puts row.to_csv(csv_options_from options)
         end

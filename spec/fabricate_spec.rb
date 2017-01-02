@@ -128,16 +128,21 @@ describe Fabricate do
 
       end
 
-      describe 'column separator' do
-
-        it 'can specify CSV separators' do
-          out, _ = capture_io do
-            subject.render(count: 1, delimiter: '|')
-          end
-
-          out.lines.first.split('|').length.must_equal 3, out.lines.first
+      it 'can specify CSV separators' do
+        out, _ = capture_io do
+          subject.render(count: 1, delimiter: '|')
         end
 
+        out.lines.first.split('|').length.must_equal 3, out.lines.first
+      end
+
+      it 'can render a header row' do
+        out, _ = capture_io do
+          subject.render(count: 1, header: true)
+        end
+
+        out.lines.length.must_equal 2
+        out.lines.first.chomp.must_equal columns.join(',')
       end
 
     end
