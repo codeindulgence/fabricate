@@ -1,7 +1,7 @@
 Fabricate Change Log
 ====================
 
-Unreleased
+0.4.0 - 2017-01-02
 ----------
 ### Added
 - Help option and usage instructions

@@ -4,7 +4,6 @@ Fabricate To Do List
 1.0 Release
 ------------
 
-- Enable header row
 - Command to list supported types
 - JSON output
 - XML output

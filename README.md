@@ -14,10 +14,11 @@ Synopsis
 
 ```
 Usage: fabricate [options]
-    -d, --delimiter STRING           Specify the column separator (default ',').
+    -n, --count INTEGER              Set the number of desired rows
     -c TYPE1[,TYPE2[,...]],          Specify the desired column names
         --columns                    Find type names at: https://github.com/stympy/faker/blob/master/README.md#usage
-    -n, --count INTEGER              Set the number of desired rows
+    -d, --delimiter STRING           Specify the column separator (default ',').
+    -H, --header                     Print the column types as a header row
     -h, --help                       Prints this help
 ```
 
